@@ -1,0 +1,22 @@
+{
+	"name": "pkg-docker-demo",
+	"version": "1.0.0",
+	"description": "A simple demo on how to package a Node.js application using pkg and Docker",
+	"author": "Christian Bettinger <c.bettinger@hochschule-trier.de>",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cbettinger/pkg-docker-demo.git"
+	},
+	"devDependencies": {
+		"pkg": "^4.4.0"
+	},
+	"scripts": {
+		"pkg": "pkg --targets=node10-alpine-x64 --output ./pkg/helloworld .",
+		"predocker": "npm run pkg",
+		"docker": "docker build --tag=pkg-docker-demo . && docker run pkg-docker-demo"
+	},
+	"bin": {
+		"helloworld": "./src/helloworld.js"
+	}
+}
